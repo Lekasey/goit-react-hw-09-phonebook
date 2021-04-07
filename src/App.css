@@ -16,3 +16,11 @@ body {
 .button:hover {
   transform: scale(1.05);
 }
+
+.wrapper {
+  width: 500px;
+}
+.noContacts {
+  display: block;
+  text-align: center;
+}

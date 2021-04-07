@@ -51,7 +51,7 @@ class App extends Component {
       <div>
         <h1>Phonebook</h1>
         <Form onSubmit={this.isContactPresent} />
-        <div>
+        <div className="wrapper">
           <h2>Contacts</h2>
           <Filter value={filter} onChange={this.changeFilter} />
           {contacts.length > 0 ? (
@@ -60,7 +60,7 @@ class App extends Component {
               onDeleteContact={this.deleteContact}
             />
           ) : (
-            'No contacts added yet'
+            <p className="noContacts">No contacts added yet</p>
           )}
         </div>
       </div>
