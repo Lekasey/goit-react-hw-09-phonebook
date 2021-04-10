@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ContactList from './Components/ContactList';
 import Filter from './Components/Filter';
 import Form from './Components/Form';
@@ -9,6 +10,22 @@ class App extends Component {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({
+        contacts: parsedContacts,
+      });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   isContactPresent = newContact => {
     const normalizedNewContact = newContact.name.toLowerCase();
@@ -27,7 +44,6 @@ class App extends Component {
   };
 
   deleteContact = idToDelete => {
-    console.log(idToDelete);
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== idToDelete),
     }));
@@ -67,5 +83,20 @@ class App extends Component {
     );
   }
 }
+App.defaultProps = {
+  contacts: PropTypes.array,
+  filter: PropTypes.string,
+};
+
+App.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+  ),
+  filter: PropTypes.string,
+};
 
 export default App;
