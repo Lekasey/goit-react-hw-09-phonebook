@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import shortId from 'shortid';
 import PropTypes from 'prop-types';
 import './Form.css';
 import { connect } from 'react-redux';
