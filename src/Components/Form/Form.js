@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import shortId from 'shortid';
+// import shortId from 'shortid';
 import PropTypes from 'prop-types';
 import './Form.css';
+import { connect } from 'react-redux';
+import phonebookActions from '../../redux/phonebook/phonebook-actions';
 
 class Form extends Component {
   state = {
@@ -11,13 +13,9 @@ class Form extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    const contact = {
-      id: shortId.generate(),
-      name: this.state.name,
-      number: this.state.number,
-    };
+    const { name, number } = this.state;
 
-    this.props.onSubmit(contact);
+    this.props.onSubmit(name, number);
     this.reset();
   };
 
@@ -77,5 +75,9 @@ Form.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
 };
+const mapDispatchToProps = dispatch => ({
+  onSubmit: (name, number) =>
+    dispatch(phonebookActions.addContact(name, number)),
+});
 
-export default Form;
+export default connect(null, mapDispatchToProps)(Form);
