@@ -9,7 +9,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import phonebookReducer from './phonebook/phonebooks-reducer';
+import { phonebookReducer } from './phonebook';
 
 import logger from 'redux-logger';
 // import storage from 'redux-persist/lib/storage';

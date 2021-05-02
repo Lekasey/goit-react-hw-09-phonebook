@@ -5,9 +5,10 @@ import Filter from './Components/Filter';
 import Form from './Components/Form';
 import './App.css';
 import { connect } from 'react-redux';
-import phonebookOperations from './redux/phonebook/phonebook-operations';
+import { phonebookOperations } from './redux/phonebook';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { getContacts, getIsLoading, getError } from './redux/phonebook';
 
 class App extends Component {
   componentDidMount() {
@@ -59,9 +60,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.phonebook.contacts,
-  isLoading: state.phonebook.loading,
-  error: state.phonebook.error,
+  contacts: getContacts(state),
+  isLoading: getIsLoading(state),
+  error: getError(state),
 });
 
 const mapDispatchoProps = dispatch => ({
