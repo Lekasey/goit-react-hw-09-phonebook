@@ -17,10 +17,30 @@ body {
   transform: scale(1.05);
 }
 
+.flexbox {
+  display: flex;
+}
+
 .wrapper {
   width: 500px;
 }
 .noContacts {
   display: block;
   text-align: center;
+}
+
+.Notify {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  width: 250px;
+  background: #fff;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.Notify__text {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
 }

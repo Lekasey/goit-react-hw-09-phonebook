@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
-  persistStore,
-  persistReducer,
+  // persistStore,
+  // persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,7 +12,7 @@ import {
 import phonebookReducer from './phonebook/phonebooks-reducer';
 
 import logger from 'redux-logger';
-import storage from 'redux-persist/lib/storage';
+// import storage from 'redux-persist/lib/storage';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -23,15 +23,18 @@ const middleware = [
   logger,
 ];
 
-const contactsPersistConfig = {
-  key: 'phonebook',
-  storage,
-  blacklist: ['filter'],
-};
+// const contactsPersistConfig = {
+//   key: 'phonebook',
+//   storage,
+//   blacklist: ['filter'],
+// };
 
 const store = configureStore({
   reducer: {
-    phonebook: persistReducer(contactsPersistConfig, phonebookReducer),
+    phonebook:
+      // persistReducer(contactsPersistConfig,
+      phonebookReducer,
+    // ),
   },
   middleware:
     process.env.NODE_ENV === 'development'
@@ -39,7 +42,8 @@ const store = configureStore({
       : getDefaultMiddleware(),
   devTools: process.env.NODE_ENV === 'development',
 });
-const persistor = persistStore(store);
+// const persistor = persistStore(store);
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { store, persistor };
+export default store;
+// { store, persistor };

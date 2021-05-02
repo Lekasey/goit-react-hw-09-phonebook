@@ -1,33 +1,55 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import actions from './phonebook-actions';
-
-const presentCheck = (allContacts, newContact) => {
-  const normalizedNewContact = newContact.name.toLowerCase();
-  const nameSearch = allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedNewContact),
-  );
-  if (nameSearch.length !== 0) {
-    alert(`${newContact.name} is already in contacts`);
-  }
-  return nameSearch;
-};
+import {
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  changeFilter,
+  fetchContactsRequest,
+  fetchContactsSuccess,
+  fetchContactsError,
+} from './phonebook-actions';
 
 const contacts = createReducer([], {
-  [actions.addContact]: (state, { payload }) => {
-    return presentCheck(state, payload).length === 0
-      ? [...state, payload]
-      : state;
-  },
-  [actions.deleteContact]: (state, { payload }) =>
+  [fetchContactsSuccess]: (_, { payload }) => payload,
+  [addContactSuccess]: (state, { payload }) => [...state, payload],
+  [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+});
+const loading = createReducer(false, {
+  [fetchContactsRequest]: () => true,
+  [fetchContactsSuccess]: () => false,
+  [fetchContactsError]: () => false,
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
+});
+
+const error = createReducer(null, {
+  [fetchContactsRequest]: () => null,
+  [fetchContactsError]: (_, { payload }) =>
+    `${payload}. Some problem while loading your contacts. Try again`,
+  [addContactRequest]: () => null,
+  [addContactError]: (_, { payload }) =>
+    `${payload}. Failed adding new contact. Try again`,
+  [deleteContactRequest]: () => null,
+  [deleteContactError]: (_, { payload }) =>
+    `${payload}. Something went wrong. Try to delete your contact once more`,
 });
 
 const filter = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
   contacts,
   filter,
+  loading,
+  error,
 });
