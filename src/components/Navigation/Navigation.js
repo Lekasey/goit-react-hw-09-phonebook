@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.css';
 
 const Navigation = () => {
   return (
@@ -7,16 +6,16 @@ const Navigation = () => {
       <NavLink
         exact
         to="/"
-        className={styles.link}
-        activeClassName={styles.activeLink}
+        className="link px-4 py-1"
+        activeClassName="bnt btn-primary"
       >
         Main Page
       </NavLink>
       <NavLink
         exact
         to="/phonebook"
-        className={styles.link}
-        activeClassName={styles.activeLink}
+        className="link ms-2 px-4 py-1"
+        activeClassName="bnt btn-primary"
       >
         Phonebook
       </NavLink>

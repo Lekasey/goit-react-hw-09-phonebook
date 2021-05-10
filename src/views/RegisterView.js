@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
 
-const styles = {
-  form: {
-    width: 320,
-    outline: 'none',
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
-
 class RegisterView extends Component {
   state = {
     name: '',
@@ -40,36 +28,52 @@ class RegisterView extends Component {
 
     return (
       <>
-        <h1>Register Page</h1>
-        <form className="form" onSubmit={this.handleSubmit} style={styles.form}>
-          <label className="label" style={styles.label}>
-            Name{' '}
+        <h1 className="visually-hidden">Register Page</h1>
+        <form className="form mx-auto mt-4" onSubmit={this.handleSubmit}>
+          <h2 className="h3 text-center d-block mb-4">Registration form</h2>
+          <label className="label">
+            Name
             <input
               type="name"
               name="name"
               value={name}
               onChange={this.handleChange}
+              className="form-control"
+              placeholder="Mango"
+              autoComplete="off"
+              autoFocus="on"
             />
           </label>
-          <label className="label" style={styles.label}>
+          <label className="label">
             Email
             <input
               type="email"
               name="email"
               value={email}
               onChange={this.handleChange}
+              className="form-control"
+              placeholder="Example@email.com"
+              autoComplete="off"
             />
           </label>
-          <label className="label" style={styles.label}>
+          <label className="label">
             Password
             <input
+              className="form-control"
               type="password"
               name="password"
               value={password}
+              placeholder="Password"
               onChange={this.handleChange}
+              autoComplete="off"
             />
           </label>
-          <button type="submit">Log in</button>
+          <button
+            type="submit"
+            className="btn btn-primary d-block mt-4 mx-auto"
+          >
+            Registration
+          </button>
         </form>
       </>
     );

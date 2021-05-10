@@ -1,11 +1,10 @@
 import Navigation from '../Navigation';
 import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
-import './AppBar.css';
 
 const AppBar = ({ isAuthenticated }) => {
   return (
-    <header className="Header">
+    <header className="Header px3 py3">
       <Navigation />
       {isAuthenticated ? <UserMenu /> : <AuthNav />}
     </header>

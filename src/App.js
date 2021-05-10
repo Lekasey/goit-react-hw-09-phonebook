@@ -1,12 +1,11 @@
-import './App.css';
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
-import Container from './Components/Container';
-import AppBar from './Components/AppBar';
-import HomeView from './Views/HomeView';
-import LoginView from './Views/LoginView';
-import RegisterView from './Views/RegisterView';
-import PhonebookView from './Views/PhonebookView';
+import Container from './components/Container';
+import AppBar from './components/AppBar';
+import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+import RegisterView from './views/RegisterView';
+import PhonebookView from './views/PhonebookView';
 
 class App extends Component {
   render() {

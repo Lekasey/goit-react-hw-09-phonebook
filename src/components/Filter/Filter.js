@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Filter.css';
 import { connect } from 'react-redux';
 import { changeFilter } from '../../redux/phonebook';
 import { getFilter } from '../../redux/phonebook';
@@ -11,7 +10,7 @@ const Filter = ({ value, onChange }) => {
       <label>
         Find contacts by name
         <input
-          className="filterInput"
+          className="mx-3"
           type="text"
           name="filter"
           value={value}
