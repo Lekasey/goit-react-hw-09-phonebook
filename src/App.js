@@ -1,71 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ContactList from './Components/ContactList';
-import Filter from './Components/Filter';
-import Form from './Components/Form';
 import './App.css';
-import { connect } from 'react-redux';
-import { phonebookOperations } from './redux/phonebook';
-import Loader from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { getContacts, getIsLoading, getError } from './redux/phonebook';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router';
+import Container from './Components/Container';
+import AppBar from './Components/AppBar';
+import HomeView from './Views/HomeView';
+import LoginView from './Views/LoginView';
+import RegisterView from './Views/RegisterView';
+import PhonebookView from './Views/PhonebookView';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchContacts();
-  }
-
   render() {
-    const { contacts, isLoading, error } = this.props;
     return (
-      <div>
-        {error && (
-          <div className="Notify">
-            <h2 className="Notify__text">{error}</h2>
-          </div>
-        )}
-        <h1>Phonebook</h1>
+      <Container>
+        <AppBar />
 
-        <Form />
-        <div className="wrapper">
-          <h2>Contacts</h2>
-          <div className="flexbox">
-            <Filter />
-            {isLoading && (
-              <Loader type="Puff" color="#00BFFF" height={25} width={25} />
-            )}
-          </div>
-          {contacts.length > 0 ? (
-            <ContactList />
-          ) : (
-            <p className="noContacts">No contacts added yet</p>
-          )}
-        </div>
-      </div>
+        <Switch>
+          <Route exact path="/" component={HomeView} />
+          <Route exact path="/register" component={RegisterView} />
+          <Route exact path="/login" component={LoginView} />
+          <Route exact path="/phonebook" component={PhonebookView} />
+        </Switch>
+      </Container>
     );
   }
 }
-App.defaultProps = {
-  contacts: PropTypes.array,
-};
 
-App.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ),
-};
-
-const mapStateToProps = state => ({
-  contacts: getContacts(state),
-  isLoading: getIsLoading(state),
-  error: getError(state),
-});
-
-const mapDispatchoProps = dispatch => ({
-  fetchContacts: () => dispatch(phonebookOperations.fetchContacts()),
-});
-export default connect(mapStateToProps, mapDispatchoProps)(App);
+export default App;
