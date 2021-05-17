@@ -1,7 +1,0 @@
-.ContactListItem {
-  display: flex;
-  width: 450px;
-  justify-content: space-between;
-  /* justify-content: center; */
-  align-items: center;
-}

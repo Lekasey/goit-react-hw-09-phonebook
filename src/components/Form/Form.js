@@ -42,7 +42,7 @@ class Form extends Component {
               Name
               <input
                 className="form-control"
-                placeholder="Mango/Алексей"
+                placeholder="Mango"
                 autoComplete="off"
                 type="text"
                 name="name"

@@ -8,7 +8,7 @@ import { phonebookOperations } from '../redux/phonebook';
 import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { getContacts, getIsLoading, getError } from '../redux/phonebook';
-import { Alert } from 'react-bootstrap';
+// import { Alert } from 'react-bootstrap';
 
 class PhonebookView extends Component {
   componentDidMount() {
@@ -16,16 +16,16 @@ class PhonebookView extends Component {
   }
 
   render() {
-    const { contacts, isLoading, error } = this.props;
+    const { contacts, isLoading } = this.props;
     return (
       <div>
-        {
+        {/* {
           error && <Alert className="text-center bg-danger">{error}</Alert>
 
           // <div className="Notify">
           //   <h2 className="Notify__text">{error}</h2>
           // </div>
-        }
+        } */}
         <h1 className="visually-hidden">Phonebook</h1>
 
         <Form />

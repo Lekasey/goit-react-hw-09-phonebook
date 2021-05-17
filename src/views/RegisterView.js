@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { authOperations } from '../redux/auth';
 
 class RegisterView extends Component {
   state = {
@@ -9,6 +11,8 @@ class RegisterView extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    this.props.onRegister(this.state);
 
     this.setState({
       name: '',
@@ -30,7 +34,7 @@ class RegisterView extends Component {
       <>
         <h1 className="visually-hidden">Register Page</h1>
         <form className="form mx-auto mt-4" onSubmit={this.handleSubmit}>
-          <h2 className="h3 text-center d-block mb-4">Registration form</h2>
+          <h2 className="h3 text-center d-block mb-4">Sign Up</h2>
           <label className="label">
             Name
             <input
@@ -80,4 +84,8 @@ class RegisterView extends Component {
   }
 }
 
-export default RegisterView;
+const mapDispatchToProps = {
+  onRegister: authOperations.register,
+};
+
+export default connect(null, mapDispatchToProps)(RegisterView);
