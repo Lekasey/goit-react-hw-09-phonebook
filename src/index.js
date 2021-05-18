@@ -5,8 +5,9 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
-import './styles/base.scss';
 import { PersistGate } from 'redux-persist/integration/react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/base.scss';
 
 ReactDOM.render(
   <React.StrictMode>
