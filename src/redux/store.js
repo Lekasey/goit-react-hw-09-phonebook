@@ -12,7 +12,7 @@ import {
 import { phonebookReducer } from './phonebook';
 import { authReducer } from './auth';
 
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 
 const middleware = [
@@ -21,7 +21,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
+  // logger,
 ];
 
 const authPersistConfig = {

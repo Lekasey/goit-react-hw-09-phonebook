@@ -1,10 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeFilter } from '../../redux/phonebook';
 import { getFilter } from '../../redux/phonebook';
 
-const Filter = ({ value, onChange }) => {
+export default function Filter() {
+  const dispatch = useDispatch();
+  const value = useSelector(getFilter);
+
+  const onChange = e => dispatch(changeFilter(e.currentTarget.value));
+
   return (
     <>
       <label className="mx-auto d-flex align-items-center" width={100}>
@@ -19,19 +24,9 @@ const Filter = ({ value, onChange }) => {
       </label>
     </>
   );
-};
+}
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  value: getFilter(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(changeFilter(e.currentTarget.value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+// Filter.propTypes = {
+//   // value: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };

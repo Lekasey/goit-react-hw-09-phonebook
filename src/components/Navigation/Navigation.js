@@ -1,8 +1,10 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { authSelectors } from '../../redux/auth';
 
-const Navigation = ({ isAuthenticated }) => {
+export default function Navigation({ isAuthenticated }) {
+  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+
   return (
     <div>
       <NavLink
@@ -13,7 +15,7 @@ const Navigation = ({ isAuthenticated }) => {
       >
         Main Page
       </NavLink>
-      {isAuthenticated && (
+      {isLoggedIn && (
         <NavLink
           exact
           to="/phonebook"
@@ -25,10 +27,4 @@ const Navigation = ({ isAuthenticated }) => {
       )}
     </div>
   );
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.getIsAuthenticated(state),
-});
-
-export default connect(mapStateToProps)(Navigation);
+}
